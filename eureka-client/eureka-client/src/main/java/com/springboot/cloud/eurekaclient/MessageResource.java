@@ -1,21 +1,22 @@
 package com.springboot.cloud.eurekaclient;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-@RequestMapping("/rest/message/client")
+@RestController
 public class MessageResource {
 
 	@Autowired
 	RestTemplate restTemplate;
 	
-	String url="http://message-microservice/rest/message/server";
+	String url="http://MESSAGE-MICROSERVICE/rest/message/server";
 	
-	@GetMapping
+	@RequestMapping("/rest/message")
 	public String getMessage()
 	{
+		System.out.println("enter in message service");
 		return  restTemplate.getForObject(url, String.class);
 	}
 }
